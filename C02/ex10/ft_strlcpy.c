@@ -6,27 +6,25 @@
 /*   By: kcsajka <kcsajka@student.42lausanne.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 14:59:07 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/22 15:00:18 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/08/22 16:31:16 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	if (size == 0) return (0);
-	int	i;
-	
+	unsigned int	i;
+
+	if (size == 0)
+		return (0);
 	i = 0;
-	while (src[i] != '\0' && i < size -1)
+	while (src[i] != '\0')
 	{
-		dest[i] = src[i];
+		if (i < size -1)
+			dest[i] = src[i];
+		else
+			dest[i] = '\0';
 		i++;
 	}
-	while (i < size - 2)
-	{
-		dest[i] = '\0';
-    i++;
-	}
-
 	dest[i] = '\0';
 	return (i);
 }
@@ -45,27 +43,27 @@ void printnull(char str[], size_t size)
     printf("%c", str[i]);
   }
   fputs("\"", stdout);
-  printf("\n");
 }
 
+void test(char *str, int n) {
+	char str1[50];
+	char str2[50];
+
+	int user_res = ft_strlcpy(str1, str, n);
+	int syst_res = strlcpy(str2, str, n);
+
+	fputs("user: ", stdout);
+	printf("\"%s\" (len %d)", str1, user_res);
+	puts("");
+	fputs("system: ", stdout);
+	printf("\"%s\" (len %d)", str2, syst_res);
+	puts("");
+}
 int main() {
-  char *str1 = "Hello";
-  char str2[6];
-  char *str3 = "Hello";
-  char str4[6];
-
-  fputs("original:", stdout);
-  printnull(str1, 6);
-  puts("");
-
-  ft_strlcpy(str2, str1, 6);
-
-  fputs("ft_strlcpy: ", stdout);
-  printnull(str2, 6);
-  puts("");
-  
-  strlcpy(str4, str3, 6);
-  
-  fputs("strlcpy: ", stdout);
-  printnull(str4, 6);
+	test("Hello", 6);
+	test("Hello", 10);
+	test("Hello", 3);
+	test("", 6);
+	test("wow", 1);
+	test("World!!!", 6);
 }*/
