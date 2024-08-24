@@ -1,52 +1,91 @@
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rush01.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: madelmen <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/24 13:57:44 by madelmen          #+#    #+#             */
+/*   Updated: 2024/08/24 18:11:44 by kcsajka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void prnt(char c)
+void	ft_putchar(char c);
+
+int	is_top_left_or_bottom_right_corner(int column, int row, int x, int y)
 {
-	write(1, &c, 1);
+	return ((column == 0 && row == 0) || \
+			(column == x - 1 && row == y - 1 && column > 0 && row > 0));
 }
 
-void rush(int x, int y, char *table) 
+int is_right_corner(int column, int row, int x, int y)
 {
-	x--; y--;
-	if (table == NULL)
-		table = "/*\\* *\\*/";
-	char *cur = table;
+	return (column == x-1) && (row == 0 || row == y -1);
+}
 
-	int	row = 0;
-	int	col = 0;
+int is_left_corner(int column, int row, int x, int y)
+{
+	return (column == 0) && (row == 0 || row == y -1);
+}
 
-	while (col <= y)
+int is_bottom(int row, int y)
+{
+	return (row == y -1);
+}
+
+int is_top(int row, int y)
+{
+	return (row == 0);
+}
+
+int	is_top_right_or_bottom_left_corner(int column, int row, int x, int y)
+{
+	// is border
+	// is top and right
+	// is bottom and left
+	is_border(row, column, y, x) && (col
+	return ((column == 0 && row == y - 1) || (column == x - 1 && row == 0));
+}
+
+int	is_border(int row, int column, int y, int x)
+{
+	return (row == 0 || column == 0 || row == y - 1 || column == x - 1);
+}
+
+void	rush(int x, int y)
+{
+	int	column;
+	int	row;
+
+	row = 0;
+	while (row < y)
 	{
-		row = 0;
-		while (row <= x)
+		column = 0;
+		while (column < x)
 		{
-			if (row == 0)
-				prnt(*cur);
-			else if (row == x)
-				prnt(*(cur +2));
+			if (is_top(column, y) && (is_right_corner))
+			} else if (is_bottom(column, y))
+			{
+
+			} else if (is_border(row, column, y, x))
+			{
+				
+			}
+
 			else
-				prnt(*(cur +1));
+				ft_putchar(' ')
 
-			row++;
+			if (is_top_left_or_bottom_right_corner(column, row, x, y))
+				ft_putchar('/');
+			else if (is_top_right_or_bottom_left_corner(column, row, x, y))
+				ft_putchar('\\');
+			else if (is_border(row, column, y, x))
+				ft_putchar('*');
+			else
+				ft_putchar(' ');
+			column++;
 		}
-
-		if (col == 0 || col == y - 1)
-			cur += 3;
-
-		prnt('\n');
-
-		col++;
+		ft_putchar('\n');
+		row++;
 	}
-}
-
-#include <stdlib.h>
-#include <string.h>
-int main(int argc, char *argv[]) {
-	if (argc < 3) return 1;
-	if (argc == 3)
-		rush(atoi(argv[1]), atoi(argv[2]), NULL);
-	else if (strlen(argv[3]) == 9)
-		rush(atoi(argv[1]), atoi(argv[2]), argv[3]);
-	else
-		return 1;
 }
