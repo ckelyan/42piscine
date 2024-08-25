@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rush01.c                                           :+:      :+:    :+:   */
+/*   rush00.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdelmeni <eljok87@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/24 21:54:06 by mdelmeni          #+#    #+#             */
-/*   Updated: 2024/08/25 17:59:04 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/08/24 21:54:52 by mdelmeni          #+#    #+#             */
+/*   Updated: 2024/08/25 17:58:45 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 void	ft_putchar(char c);
 
-int	is_top_left_or_bottom_right_corner(int column, int row, int x, int y)
+int	is_corner(int column, int row, int x, int y)
 {
-	return ((column == 0 && row == 0) || \
-			(column == x - 1 && row == y - 1 && column > 0 && row > 0));
+	return ((column == 0 || column == x - 1) && (row == 0 || row == y - 1));
 }
 
-int	is_top_right_or_bottom_left_corner(int column, int row, int x, int y)
+int	is_vertical_border(int column, int x)
 {
-	return ((column == 0 && row == y - 1) || (column == x - 1 && row == 0));
+	return (column == 0 || column == x - 1);
 }
 
-int	is_border(int row, int column, int y, int x)
+int	is_horizontal_border(int row, int y)
 {
-	return (row == 0 || column == 0 || row == y - 1 || column == x - 1);
+	return (row == 0 || row == y - 1);
 }
 
 int	ft_error_value(int x, int y)
@@ -53,12 +52,12 @@ void	rush(int x, int y)
 		column = 0;
 		while (column < x)
 		{
-			if (is_top_left_or_bottom_right_corner(column, row, x, y))
-				ft_putchar('/');
-			else if (is_top_right_or_bottom_left_corner(column, row, x, y))
-				ft_putchar('\\');
-			else if (is_border(row, column, y, x))
-				ft_putchar('*');
+			if (is_corner(column, row, x, y))
+				ft_putchar('o');
+			else if (is_vertical_border(column, x))
+				ft_putchar('|');
+			else if (is_horizontal_border(row, y))
+				ft_putchar('-');
 			else
 				ft_putchar(' ');
 			column++;

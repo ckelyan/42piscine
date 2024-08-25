@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rush02.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: atexier <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/24 12:09:27 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/25 13:16:06 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/08/24 12:16:18 by atexier           #+#    #+#             */
+/*   Updated: 2024/08/25 17:59:20 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,39 @@
 
 void	ft_putchar(char c);
 
-void	print_col(char *cur, int c, int max)
+int	ft_error(int x, int y)
 {
-	if (c == 0)
-		ft_putchar(*cur);
-	else if (c == max-1)
-		ft_putchar(*(cur +2));
-	else
-		ft_putchar(*(cur +1));
+	if (x <= 0 || y <= 0)
+	{
+		write(1, "ERROR: invalid arguments, expected x > 0 and y > 0\n", 51);
+		return (1);
+	}
+	return (0);
 }
 
 void	rush(int x, int y)
-{
-	char const	*cur;
+{	
 	int	row;
 	int	col;
 
-	if (x < 1 || y < 1)
-		write(2, "ERROR: invalid arguments, expected x > 0 and y > 0\n", 52);
-
-	cur = "ABAB BCBC";
-	row = 0;
-	while (row < y)
+	row = 1;
+	if (ft_error(x, y))
+		return ;
+	while (row <= y)
 	{
-		col = 0;
-		while (col < x)
+		col = 1;
+		while (col <= x)
 		{
-			print_col(cur, col, x);
+			if ((row == 1 && col == 1) || (row == 1 && col == x))
+				ft_putchar('A');
+			else if ((row == y && col == 1) || (row == y && col == x))
+				ft_putchar('C');
+			else if (row == 1 || row == y || col == 1 || col == x)
+				ft_putchar('B');
+			else
+				ft_putchar(' ');
 			col++;
 		}
-		if (row == 0 || row == y-2)
-			cur += 3 * (1 + (y == 2));
 		ft_putchar('\n');
 		row++;
 	}
