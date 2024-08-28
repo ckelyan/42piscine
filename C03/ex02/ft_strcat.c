@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kcsajka <kcsajka@student.42lausanne.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 16:57:24 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/28 11:39:08 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/08/28 11:41:10 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/08/28 14:20:34 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(char *s1, char *s2)
+char	*ft_strcat(char *dest, char *src)
 {
-	while (*s1 == *s2)
-		if (*s1++ == '\0' || *s2++ == '\0')
-			break ;
-	return (*s1 - *s2);
+	while (*dest++) {}
+	while (*src++)
+		*dest++ = *src;
+	
+	return (dest);
 }
