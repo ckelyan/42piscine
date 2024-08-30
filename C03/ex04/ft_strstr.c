@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 11:41:10 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/29 15:48:43 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/08/28 17:56:26 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/08/29 13:51:17 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strstr(char *haystack, char *needle)
 {
-	unsigned int	i;
+	char		*candidate;
+	char *const	needle_start = needle;
 
-	i = 0;
-	while (dest[i])
-		i++;
-	while (*src)
-		dest[i++] = *src++;
-	dest[i] = '\0';
-	return (dest);
+	if (!*needle)
+		return (haystack);
+	candidate = 0;
+	while (*haystack)
+	{
+		candidate = haystack;
+		needle = needle_start;
+		if (*candidate == *needle_start)
+			while (*candidate++ == *needle++)
+				if (!*needle)
+					return (haystack);
+		candidate = 0;
+		haystack++;
+	}
+	return (candidate);
 }
