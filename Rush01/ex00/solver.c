@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 17:43:38 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/31 15:54:59 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/08/31 18:31:53 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/01 16:00:59 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int n)
-{
-	unsigned int	i;
-	unsigned int	j;
+#include <stdlib.h>
 
-	if (n == 0)
-		return (dest);
+int	systematic_1s(int **values, int *clues, size_t size)
+{
+	size_t	i;
+
 	i = 0;
-	j = 0;
-	while (dest[i])
+	while (i < size * size)
 	{
-		i++;
+		if (clues[i] == 1)
+			
 	}
-	while (*src && j++ < n)
-		dest[i++] = *src++;
-	dest[i] = '\0';
-	return (dest);
+}
+
+int	solve_recursive_helper(int **values, int *clues, size_t size)
+{
+	
+}
+
+int	solve(int **values, int *clues, size_t size)
+{
+	while (1)
+		solve_recursive_helper()
 }

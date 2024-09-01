@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kcsajka <kcsajka@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: kcsajka <kcsajka@student.42lausanne.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/28 17:43:38 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/31 15:54:59 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/01 16:58:34 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/01 17:46:23 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int n)
+int	ft_strlen(char *str)
 {
-	unsigned int	i;
-	unsigned int	j;
+	int	i;
 
-	if (n == 0)
-		return (dest);
 	i = 0;
-	j = 0;
-	while (dest[i])
-	{
+	while (str[i])
 		i++;
-	}
-	while (*src && j++ < n)
-		dest[i++] = *src++;
-	dest[i] = '\0';
-	return (dest);
+	return (i);
 }

@@ -17,3 +17,4 @@ int main(int argc, char *argv[])
 	n = atoi(argv[2]);
 	as = atoi(argv[3]);
 	res1 = ft_strlcat(dest, "wow");
+}
