@@ -6,7 +6,7 @@
 /*   By: kcsajka <marvin@42lausanne.ch>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 17:12:59 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/08/22 18:50:58 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/08/25 18:11:15 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ char	*ft_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = src[i];
 	return (dest);
 }
