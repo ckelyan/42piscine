@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42lausanne.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 17:41:18 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/01 18:12:22 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:48:46 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_putnbr_base(int nbr, char *base)
 	if (nbr < 0)
 	{
 		ft_putchar('-');
-		nbr *= -1;
+		nbr = -nbr;
 	}
 	ft_putnbr_base_helper(nbr, base, len);
 }
