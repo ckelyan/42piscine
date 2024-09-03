@@ -6,13 +6,13 @@
 /*   By: kcsajka <kcsajka@student.42lausanne.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 17:03:31 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/02 18:01:58 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:46:11 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <limits.h>
-#include <stdio.h>
+
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -41,6 +41,5 @@ void	ft_putnbr(int i)
 		}
 		i = -i;
 	}
-
 	ft_putnbr_helper(i);
 }

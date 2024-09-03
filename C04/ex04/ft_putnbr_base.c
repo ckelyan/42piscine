@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42lausanne.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/01 17:41:18 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/02 16:48:46 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/03 15:45:44 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_strlen(char *str)
+long	ft_strlen(char *str)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while (str[i])
@@ -27,7 +27,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	check_duplicates(char *str)
+int	check_validity(char *str)
 {
 	int	i;
 	int	j;
@@ -35,6 +35,8 @@ int	check_duplicates(char *str)
 	j = 0;
 	while (str[j])
 	{
+		if ((str[j] < 32 || str[j] > 126) || str[j] == '+' || str[j] == '-')
+			return (1);
 		i = 0;
 		while (str[i])
 		{
@@ -47,7 +49,7 @@ int	check_duplicates(char *str)
 	return (0);
 }
 
-void	ft_putnbr_base_helper(int n, char *basech, int base)
+void	ft_putnbr_base_helper(long n, char *basech, long base)
 {
 	if (n < base)
 	{
@@ -60,15 +62,17 @@ void	ft_putnbr_base_helper(int n, char *basech, int base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	len;
+	long	len;
+	long	n;
 
+	n = (long)nbr;
 	len = ft_strlen(base);
-	if (len < 2 || check_duplicates(base))
+	if (len < 2 || check_validity(base))
 		return ;
-	if (nbr < 0)
+	if (n < 0)
 	{
 		ft_putchar('-');
-		nbr = -nbr;
+		n = -n;
 	}
-	ft_putnbr_base_helper(nbr, base, len);
+	ft_putnbr_base_helper(n, base, len);
 }
