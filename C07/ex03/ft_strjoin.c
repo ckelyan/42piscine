@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:08:28 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/02 17:15:02 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/03 14:28:09 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_strlen(char *s)
 		i++;
 	return (i);
 }
-
+#include <stdio.h>
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	int	total_length;
@@ -30,6 +30,8 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 
 	while (i < size)
 		total_length += ft_strlen(strs[i]);
-	total_length += strlen(sep) * (size -2);
+	total_length += ft_strlen(sep) * (size -2);
 	res = (char *)malloc(total_length);
+	printf("%d\n", total_length);
+	return (res);
 }
