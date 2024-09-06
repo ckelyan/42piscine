@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:25:13 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/06 11:58:33 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/06 14:59:29 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ char	**ft_split(char *str, char *charset)
 	res = (char **)malloc(sizeof(char *) * count + 1);
 	while (*str && i < count)
 	{
-		size = 0;
-		while (!is_sep(str[size], charset))
+		size = 1;
+		while (str[size] && !is_sep(str[size], charset))
 			size++;
 		if (size > 1)
 		{
@@ -62,7 +62,11 @@ char	**ft_split(char *str, char *charset)
 			ft_strncpy(res[i], str, size + 1);
 			i++;
 		}
+		while (str[size] && is_sep(str[size], charset))
+			size++;
+		printf("%s -> ", str);
 		str += size;
+		printf("%s\n", str);
 	}
 	res[count] = 0;
 	//printf("%d\n", count);
