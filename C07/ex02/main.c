@@ -11,6 +11,11 @@ int main(int argc, char *argv[])
 	int max = atoi(argv[2]);
 	dest = 0;
 	ft_ultimate_range(&dest, min, max);
+	if (max <= min)
+	{
+		printf("address %p \n", dest);
+		return (0);
+	}
 	for (int i = 0; i < max - min; i++)
-		printf("%d", dest[i]);
+		printf("%d, ", dest[i]);
 }
