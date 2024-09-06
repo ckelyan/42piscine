@@ -9,5 +9,5 @@ int	main(int argc, char *argv[])
 	res = ft_split(argv[1], argv[2]);
 	i = -1;
 	while (res[++i])
-		printf("%s", res[i]);
+		printf("%s\n", res[i]);
 }
