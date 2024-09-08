@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:36:21 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/07 18:46:38 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/08 11:07:13 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,12 @@ int	ft_count_lines(char *filename)
 	close(fh);
 	return (res);
 }
-#include <stdio.h>
+
 int	register_value(t_value *dest, char *line)
 {
 	char	buff[MAX_STR_SIZE];
 	int		buff_size;
-	int		index;
 
-	index = 0;
 	buff_size = 0;
 	while (*line)
 	{
@@ -94,13 +92,11 @@ int	register_value(t_value *dest, char *line)
 	}
 	buff[buff_size] = '\0';
 	dest->rvalue = ft_strdup(buff, buff_size);
-	printf("%s : %s (%d)\n", dest->lvalue, dest->rvalue, dest->power);
 	return (0);
 }
-#include <stdio.h>
-t_value	*ft_readdict(char *filename)
+
+t_value	*ft_readdict(t_value *result, char *filename)
 {
-	t_value	*result;
 	char	buff[MAX_BUFFER_SIZE];
 	char	linebuffer[MAX_LINE_SIZE];
 	int		line_idx;
@@ -109,7 +105,6 @@ t_value	*ft_readdict(char *filename)
 	fh = ft_open_file(filename);
 	if (fh == -1)
 		return (0);
-	result = (t_value *)malloc(sizeof(void *) * (ft_count_lines(filename) + 1));
 	line_idx = 0;
 	while (read(fh, buff, 1) != 0)
 	{
@@ -120,11 +115,11 @@ t_value	*ft_readdict(char *filename)
 			linebuffer[line_idx] = '\0';
 			line_idx = 0;
 			register_value(result++, linebuffer);
-		} else if (!ft_is_space(*buff))
+		}
+		else if (!ft_is_space(*buff))
 			linebuffer[line_idx++] = *buff;
 	}
-	printf("%s\n", result[0].lvalue);
-	//close(fh);
+	result->lvalue = 0;
 	return (result);
 }
 #endif
