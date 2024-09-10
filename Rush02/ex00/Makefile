@@ -1,30 +1,34 @@
-GG = gcc
+GG = cc
 
 FLAGS = -Wall -Werror -Wextra
+FLAGS_DEBUG = -g -fsanitize=address
 
-SRC = src/ft_preprocess.c src/main_test.c
+SRC = $(wildcard src/*.c)
 
 OBJ_DIR = target
 OBJ = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
-PROG = PROG
+PROG = prog
+PROG_DEV = dev
 
 all: $(PROG)
+
+dev: $(PROG_DEV)
 
 $(PROG): $(OBJ)
 	$(GG) $(FLAGS) -o $(PROG) $(OBJ)
 
+$(PROG_DEV): $(OBJ)
+	$(GG) $(FLAGS) $(FLAGS_DEBUG) -o $(PROG_DEV) $(OBJ)
+
 $(OBJ_DIR)/%.o: src/%.c
 	@mkdir -p $(OBJ_DIR)
-	$(GG) $(FLAGS) -c $< -o $@
-
-%.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
 
-rm: clean
+fclean: clean
 	rm -f $(PROG)
 
-.PHONY: all clean rm
+.PHONY: all clean fclean
