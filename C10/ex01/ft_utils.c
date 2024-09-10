@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:43:42 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 13:54:25 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/10 15:07:11 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ void	ft_error(char *str)
 {
 	while (*str)
 		write(2, str++, 1);
-	write(1, "\n", 1);
 }
 
-void	ft_readfile(int fh, char *buffer)
+void	ft_readfile(int fh)
 {
 	char	buffer[MAX_BUFFER_SIZE];
 	int		buffer_size;

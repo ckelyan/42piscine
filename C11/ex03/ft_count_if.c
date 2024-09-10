@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 17:51:44 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 15:05:38 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/10 18:07:07 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/10 18:17:39 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
-# define MAX_BUFFER_SIZE 2048
+int	ft_count_if(char **tab, int length, int (*f)(char*))
+{
+	int	i;
+	int	c;
 
-void	ft_putchar(char c);
-void	ft_error(char *str);
-void	ft_readfile(int fh);
-
-#endif
+	i = -1;
+	c = 0;
+	while (++i < length)
+		if ((*f)(tab[i]))
+			c++;
+	return (c);
+}

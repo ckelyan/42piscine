@@ -1,12 +1,12 @@
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 
-SRC = ft_display_file.c ft_utils.c
+SRC = ft_cat.c ft_utils.c
 INCLUDE = .
 
 OBJ = $(SRC:.c=.o)
 
-EXEC = ft_display_file
+EXEC = ft_cat
 
 all: $(EXEC)
 

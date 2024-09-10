@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:14:18 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/06 20:37:26 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/10 14:46:58 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ char	*ft_atoi_base(long n, char *baseds)
 	if (n == 0)
 	{
 		res = (char *)malloc(2);
-		res = {"0"};
+		res[0] = '0';
+		res[1] = '\0';
 	}
 	res_length = get_length(n, ft_strlen(baseds) + (n < 0));
 	res = (char *)malloc(res_length + 1);

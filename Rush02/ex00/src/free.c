@@ -1,21 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 17:51:44 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 15:05:38 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/08 20:20:30 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/08 20:32:19 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
-# define MAX_BUFFER_SIZE 2048
+#include "ft_bible.h"
 
-void	ft_putchar(char c);
-void	ft_error(char *str);
-void	ft_readfile(int fh);
+void	free_all_tab_i(char **tab, int i)
+{
+	int	d;
 
-#endif
+	d = 0;
+	while (d != i)
+	{
+		free(tab[d]);
+		tab[d] = NULL;
+		d++;
+	}
+	free(tab);
+	tab = NULL;
+}
+
+void	free_all_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	if (tab == NULL)
+		return ;
+	while (tab[i] != NULL)
+	{
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
+	}
+	tab = NULL;
+}

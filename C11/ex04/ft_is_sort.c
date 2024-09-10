@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 17:51:44 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 15:05:38 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/10 18:07:07 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/10 18:26:49 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
-# define MAX_BUFFER_SIZE 2048
+int	ft_is_sort(int *tab, int length, int (*f)(int, int))
+{
+	int	i;
 
-void	ft_putchar(char c);
-void	ft_error(char *str);
-void	ft_readfile(int fh);
-
-#endif
+	i = -1;
+	while (++i < length - 1)
+		if ((*f)(tab[i], tab[i + 1]) > 0)
+			return (0);
+	return (1);
+}

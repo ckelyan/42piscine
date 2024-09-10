@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft.h                                               :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 17:51:44 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 15:05:38 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/10 15:25:27 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/10 18:05:09 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_H
-# define FT_H
-# define MAX_BUFFER_SIZE 2048
+#include <stdlib.h>
 
-void	ft_putchar(char c);
-void	ft_error(char *str);
-void	ft_readfile(int fh);
+int	*ft_map(int *tab, int length, int (*f)(int))
+{
+	int	*res;
+	int	i;
 
-#endif
+	res = (int *)malloc((length) * sizeof(int));
+	i = -1;
+	while (++i < length)
+		res[i] = (*f)(tab[i]);
+	return (res);
+}
