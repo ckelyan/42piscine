@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 16:51:54 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/05 17:06:15 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/08 10:33:36 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ int	get_index_from_base(char *base, char c)
 			return (i);
 	return (-1);
 }
-
+#include <stdio.h>
 long	to_base_10(char *s, char *baseds)
 {
 	long	res;
 	int		base;
 	int		i;
 	int		pow;
+	int		value;
 
 	base = ft_strlen(baseds);
 	if (base < 2 || !*s || (*s == baseds[0] && !s[1]))
@@ -46,7 +47,10 @@ long	to_base_10(char *s, char *baseds)
 	pow = 1;
 	while (--i >= 0)
 	{
-		res += get_index_from_base(baseds, s[i]) * pow;
+		value = get_index_from_base(baseds, s[i]);
+		if (value == -1)
+			return (0);
+		res += value * pow;
 		pow *= base;
 	}
 	return (res);

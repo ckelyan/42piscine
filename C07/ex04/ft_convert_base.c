@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 12:14:18 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/05 18:00:13 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/06 20:37:26 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,28 @@ void	ft_atoi_base_helper(char *dest, long n, char* baseds, long base)
 	*dest = baseds[n % base];
 }
 
-char	*ft_atoi_base(char *dest, long n, char *baseds)
+char	*ft_atoi_base(long n, char *baseds)
 {
-	ft_atoi_base_helper(dest, n, baseds, ft_strlen(baseds));
-	rev_str(dest);
-	return (dest);
+	char	*res;
+	int		res_length;
+
+	if (n == 0)
+	{
+		res = (char *)malloc(2);
+		res = {"0"};
+	}
+	res_length = get_length(n, ft_strlen(baseds) + (n < 0));
+	res = (char *)malloc(res_length + 1);
+	if (n < 0)
+		*res++ = '-';
+	ft_atoi_base_helper(res, n, baseds, ft_strlen(baseds));
+	rev_str(res);
+	return (res);
 }
 #include <stdio.h>
 char	*ft_convert_base(char *nbr, char *baseds_from, char *baseds_to)
 {
-	char	*res;
 	long	dec_repr;
-	int		res_length;
 	int		sign;
 
 	if (check_validity(baseds_from) || check_validity(baseds_to))
@@ -90,16 +100,16 @@ char	*ft_convert_base(char *nbr, char *baseds_from, char *baseds_to)
 	while (*nbr == '-' || *nbr == '+')
 		if (*nbr++ == '-')
 			sign *= -1;
-	dec_repr = to_base_10(nbr, baseds_from);
-	res_length = get_length(dec_repr, ft_strlen(baseds_from)) + (sign < 0);
-	printf("%d\n", res_length);
-	res = (char *)malloc(res_length);
+	dec_repr = to_base_10(nbr, baseds_from) * sign;
+	return (ft_atoi_base(dec_repr, baseds_to));
+	/*res_length = get_length(dec_repr, ft_strlen(baseds_to)) + (sign < 0);
+	res = (char *)malloc(res_length + 1);
 	if (sign < 0)
 		*res = '-';
 	ft_atoi_base(res + (sign < 0), dec_repr, baseds_to);
-	if (*(res + res_length - 1) == '\0')
+	if (res[res_length] == '\0')
 		printf("ends with \\0\n");
 	else
 		printf("does not end with \\0\n");
-	return (res);
+	return (res);*/
 }

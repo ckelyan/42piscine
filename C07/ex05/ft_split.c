@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:25:13 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/06 15:23:43 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/06 19:52:54 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,61 +15,57 @@
 int	is_sep(char c, char *charset)
 {
 	while (*charset)
-		if (c == *charset++)
+		if (!c || c == *charset++)
 			return (1);
 	return (0);
 }
 
-char	*ft_strncpy(char *dest, char *str, int n)
+int	ft_strncpy(char *dest, char *str, int n)
 {
 	int	i;
 
-	i = 0;
-	while (i < n && str[i])
-	{
+	i = -1;
+	while (++i < n && str[i])
 		dest[i] = str[i];
-		i++;
-	}
 	dest[i] = '\0';
-	return (dest);
+	return (i);
 }
 
-#include <stdio.h>
+int	count_strings(char *str, char *charset)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+		if (!is_sep(*str++, charset) && is_sep(*str, charset))
+			count++;
+	return (count);
+}
+
 char	**ft_split(char *str, char *charset)
 {
 	char	**res;
 	int		scount;
-	int		ccount;
 	int		i;
+	int		arri;
 	int		size;
 
-	count = 1;
+	scount = count_strings(str, charset);
 	i = -1;
-	while (str[++i])
+	arri = 0;
+	res = (char **)malloc(sizeof(char *) * (scount + 1));
+	while (str[++i] && arri < scount)
 	{
-		if (is_sep(str[i], charset) && (str[i +1] && !is_sep(str[i +1], charset)))
-			scount++;
-	}
-	i = 0;
-	res = (char **)malloc(sizeof(char *) * count + 1);
-	while (str[i] && i < scount)
-	{
-		size = 1;
-		while (str[size] && !is_sep(str[size], charset))
+		if (is_sep(str[i], charset))
+			continue ;
+		size = 0;
+		while (!is_sep(str[i + size], charset))
 			size++;
-		if (size > 1)
-		{
-			res[i] = (char *)malloc(size + 1);
-			ft_strncpy(res[i], str, size + 1);
-			i++;
-		}
-		while (str[size] && is_sep(str[size], charset))
-			size++;
-		printf("%s -> ", str);
-		str += size;
-		printf("%s\n", str);
+		res[arri] = (char *)malloc(size + 1);
+		ft_strncpy(res[arri], &str[i], size);
+		arri++;
+		i += size;
 	}
-	res[scount][0] = 0;
-	//printf("%d\n", count);
+	res[arri] = 0;
 	return (res);
 }
