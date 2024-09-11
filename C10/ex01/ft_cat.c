@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:41:52 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 15:18:28 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/11 16:50:33 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char *argv[])
 		ft_readfile(STDIN_FILENO);
 		return (0);
 	}
-	
 	file_idx = 0;
 	while (++file_idx < argc)
 	{
@@ -37,9 +36,11 @@ int	main(int argc, char *argv[])
 			ft_error(argv[file_idx]);
 			ft_error(": ");
 			ft_error(strerror(errno));
+			ft_error("\n");
 			continue ;
 		}
 		ft_readfile(fh);
 		close(fh);
+		errno = 0;
 	}
 }

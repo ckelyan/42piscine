@@ -13,9 +13,9 @@ LIB = libft.a
 all: $(LIB)
 
 $(LIB): $(OBJ)
-	ar -crs libft.a $(OBJ)
+	ar rcs libft.a $(OBJ)
 
-$(OBJ): $(SRC)
+srcs/%.o: srcs/%.c
 	$(CC) $(FLAG) -c $< -o $@ -I$(INCLUDES)
 
 clean:

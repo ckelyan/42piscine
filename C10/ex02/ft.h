@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 16:39:00 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/11 17:35:56 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/09 17:51:44 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/11 17:02:31 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
-{
-	int	i;
+#ifndef FT_H
+# define FT_H
+# define MAX_BUFFER_SIZE 24576
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+void	ft_putchar(char c, int fh);
+void	ft_putstr(char *str, int fh);
+void	ft_file_error(char *fn);
+void	ft_readtail(int fh, int bytes);
+char	**argparse(int ac, char **av);
+
+#endif

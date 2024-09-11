@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 17:43:42 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/10 15:07:11 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/11 12:10:33 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ void	ft_readfile(int fh)
 	int		buffer_size;
 	int		i;
 
-	buffer_size = 0;
-	while ((buffer_size = read(fh, buffer, MAX_BUFFER_SIZE)))
+	buffer_size = 1;
+	while (buffer_size)
 	{
+		buffer_size = read(fh, buffer, MAX_BUFFER_SIZE);
 		i = -1;
 		while (++i < buffer_size)
 			ft_putchar(buffer[i]);

@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_tail.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 17:43:42 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/11 17:06:38 by kcsajka          ###   ########.fr       */
+/*   Created: 2024/09/09 17:41:52 by kcsajka           #+#    #+#             */
+/*   Updated: 2024/09/11 17:14:26 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 #include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <errno.h>
 
-void	ft_putchar(char c)
+int	main(int argc, char *argv[])
 {
-	write(1, &c, 1);
-}
+	int		file_idx;
+	int		fh;
 
-void	ft_error(char *str)
-{
-	while (*str)
-		write(2, str++, 1);
-	write(1, "\n", 1);
-}
-
-void	ft_readfile(int fh, char *buffer)
-{
-	int	buffer_size;
-	int	i;
-
-	buffer_size = 0;
-	while ((buffer_size = read(fh, buffer, MAX_BUFFER_SIZE)))
+	
+	if (argc == 1 || (argc > 1 && argv[1][0] == '-'))
 	{
-		i = -1;
-		while (++i < buffer_size)
-			ft_putchar(buffer[i]);
+		ft_readtail(STDIN_FILENO, );
+		return (0);
+	}
+	file_idx = 0;
+	while (++file_idx < argc)
+	{
+		fh = open(argv[file_idx], O_RDONLY);
+		if (fh == -1)
+		{
+			ft_file_error(argv[file_idx]);
+			continue ;
+		}
+		ft_readtail(fh);
+		close(fh);
+		errno = 0;
 	}
 }

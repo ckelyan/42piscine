@@ -6,12 +6,11 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:35:00 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/09 17:26:47 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/11 16:01:48 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../includes/ft.h"
 
 void	ft_putchar(char c)
 {
