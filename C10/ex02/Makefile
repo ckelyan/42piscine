@@ -6,7 +6,7 @@ INCLUDE = .
 
 OBJ = $(SRC:.c=.o)
 
-EXEC = ft_cat
+EXEC = ft_tail
 
 all: $(EXEC)
 
