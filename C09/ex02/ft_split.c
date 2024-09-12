@@ -6,7 +6,7 @@
 /*   By: kcsajka <kcsajka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 11:25:13 by kcsajka           #+#    #+#             */
-/*   Updated: 2024/09/11 18:30:23 by kcsajka          ###   ########.fr       */
+/*   Updated: 2024/09/12 12:08:20 by kcsajka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,29 @@ int	is_sep(char c, char *charset)
 	return (0);
 }
 
-char	*ft_strdup(char *str, int size)
+int	ft_strcpy_til_sep(char **dest, char *str, char *charset)
 {
-	char	*dest;
 	int		i;
+	int		size;
 
-	dest = malloc(sizeof(char) * (size + 1));
+	size = 0;
+	while (!is_sep(str[size], charset))
+		size++;
+	if (size == 0)
+		return (0);
+	*dest = malloc(sizeof(char) * (size + 1));
 	if (!dest)
-		return (NULL);
+		return (-1);
 	i = 0;
 	while (str[i] && i < size)
 	{
-		dest[i] = str[i];
+		(*dest)[i] = str[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	(*dest)[i] = '\0';
+	return (i);
 }
 
-#include <stdio.h>
 int	ft_count_strings(char *str, char *charset)
 {
 	int	i;
@@ -74,19 +78,18 @@ char	**ft_split(char *str, char *charset)
 	char	**res;
 
 	res = malloc(sizeof(char *) * (1 + ft_count_strings(str, charset)));
+	if (!res)
+		return (NULL);
 	arri = 0;
 	i = -1;
 	while (str[++i])
 	{
 		if (is_sep(str[i], charset))
 			continue ;
-		size = 0;
-		while (!is_sep(str[i + size], charset))
-			size++;
+		size = ft_strcpy_til_sep(&res[arri], &str[i], charset);
 		if (size == 0)
 			continue ;
-		res[arri] = ft_strdup(&str[i], size);
-		if (!res[arri])
+		if (size == -1)
 			return (NULL);
 		arri++;
 		i += size;

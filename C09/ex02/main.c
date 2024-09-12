@@ -19,8 +19,11 @@ int	main(int argc, char **argv)
 	if (argc != 3) return (1);
 	res = ft_split(argv[1], argv[2]);
 	i = -1;
-	if (!res)
-		return printf("returned null\n");
+	if (res == NULL)
+	{
+		printf("returned null\n");
+		return (0);
+	}
 	while (res[++i])
-		printf("%p -> %s%s\n", &res[i], res[i], res[i][ft_strlen(res[i]) + 1] == '\0' ? "\\0" : "?");
+		printf("%p -> %s\n", &res[i], res[i]);
 }
